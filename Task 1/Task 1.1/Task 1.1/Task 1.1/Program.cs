@@ -28,7 +28,7 @@ namespace Task_1._1
                     "\n");
 
                 enteredString = Console.ReadLine();
-                if (!int.TryParse(enteredString, out numOfTask) || numOfTask < 1 || numOfTask > 8)
+                if (!int.TryParse(enteredString, out numOfTask))
                 {
                     return;
                 }
@@ -77,9 +77,32 @@ namespace Task_1._1
                             }
                             break;
                         }
-                    default:
-                        break;
-
+                    case 6:
+                        {
+                            FontAdustment();
+                            break;
+                        }
+                    case 7:
+                        {
+                            ArrayProcessing();
+                            break;
+                        }
+                    case 8:
+                        {
+                            NoPositive();
+                            break;
+                        }
+                    case 9:
+                        {
+                            NonNegativeSum();
+                            break;
+                        }
+                    case 10:
+                        {
+                            GetSumOfEvenNumber();
+                            break;
+                        }
+                    default: continue;
                 }
 
 
@@ -88,6 +111,47 @@ namespace Task_1._1
 
         }
 
+
+        private static void PrintArr(int[] arr)
+        {
+            foreach (var item in arr)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+        }
+        private static void PrintArr(string[] arr)
+        {
+            foreach (var item in arr)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+        }
+        private static void PrintTwoDimensionalArr(int numOfThirdDimension,int[,,]arr)
+        {
+            for (int j = 0; j < arr.GetLength(1); j++)
+            {
+                Console.WriteLine();
+                for (int k = 0; k < arr.GetLength(2); k++)
+                {
+                    Console.Write(arr[numOfThirdDimension, j, k]+" ");
+                }
+            }
+        }
+        private static void PrintTwoDimensionalArr(int[,] arr)
+        {
+            for (int j = 0; j < arr.GetLength(0); j++)
+            {
+                for (int k = 0; k < arr.GetLength(1); k++)
+                {
+                    Console.Write(arr[j, k] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            
+        }
         static string GetAreaOfRectangle()
         {
             Console.Write("Enter side A - ");
@@ -135,7 +199,7 @@ namespace Task_1._1
 
             }
         }
-        static void CreateTriangle(int numOfStrings,int indent)
+        static void CreateTriangle(int numOfStrings, int indent)
         {
             int starsCounter = 1;
             for (int i = 1; i <= numOfStrings; i++)
@@ -156,7 +220,7 @@ namespace Task_1._1
         {
             for (int i = 1; i < numOfTriangles; i++)
             {
-                CreateTriangle(i,numOfTriangles);
+                CreateTriangle(i, numOfTriangles);
             }
         }
         static int GetSumOfMultiple(int num)
@@ -164,15 +228,232 @@ namespace Task_1._1
             int sum = 0;
             for (int i = 1; i <= num; i++)
             {
-                if(i%3==0||i%5==0)
+                if (i % 3 == 0 || i % 5 == 0)
                 {
                     sum += i;
                 }
             }
             return sum;
         }
+        static void FontAdustment()
+        {
+            string[] arr = new string[3];
+            while (true)
+            {
+                int enteredNumber;
+                Console.Write("Параметры надписи: ");
+                PrintArr(arr);
+                Console.WriteLine("\nВведите: \n" +
+                    "\t 1:bold \n" +
+                    "\t 2:italic \n" +
+                    "\t 3:underline \n");
+                string strForNum = Console.ReadLine();
+                if (int.TryParse(strForNum, out enteredNumber))
+                {
+                    switch (enteredNumber)
+                    {
+                        case 1:
+                            {
+                                arr[0] = (arr[0] != null && arr[0] == "bold") ? default(string) : "bold";
+                                break;
+                            }
+                        case 2:
+                            {
+                                arr[1] = (arr[1] != null && arr[1] == "italic") ? default(string) : "italic";
+                                break;
+                            }
+                        case 3:
+                            {
+                                arr[2] = (arr[2] != null && arr[2] == "underline") ? default(string) : "underline";
+                                break;
+                            }
+
+                        default: continue;
+                    }
+
+
+                }
+            }
+        }
+
+        private static void ArrayProcessing()
+        {
+            int lengthOfArr;
+            string enteredString;
+            Random r = new Random();
+            do
+            {
+                Console.Write("Enter the number of array elements - ");
+                enteredString = Console.ReadLine();
+            }
+            while (!int.TryParse(enteredString, out lengthOfArr));
+            int[] arr = new int[lengthOfArr];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = r.Next(-30, 30);
+            }
+            PrintArr(arr);
+            Console.WriteLine("Minumum number is - {0}", GetMin(arr));
+            Console.WriteLine("Maximum number is - {0}", GetMax(arr));
+            int[] sortedArr = SortArray(arr);
+            PrintArr(sortedArr);
+        }
+        private static int[] SortArray(int[] arr)
+        {
+            int tmp = 0 ;
+            int[] returnableArr = arr;
+            for (int i = 0; i < returnableArr.Length; i++)
+            {
+                for (int j = 1; j < returnableArr.Length; j++)
+                {
+                    if(arr[j-1]> returnableArr[j])
+                    {
+                        tmp = returnableArr[j];
+                        returnableArr[j] = returnableArr[j - 1];
+                        returnableArr[j - 1] = tmp;
+                    }
+                }
+            }
+            return returnableArr;
+        }
+        private static int GetMax(int[] arr)
+        {
+            int max = arr[0];
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i] > arr[i - 1])
+                {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        private static int GetMin(int[] arr)
+        {
+            int min=arr[0];
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if(arr[i]<arr[i-1])
+                {
+                    min = arr[i];
+                }
+            }
+            return min;
+        }
+        private static void NoPositive()
+        {
+            int lengthOfArr;
+            string enteredString;
+            Random r = new Random();
+            do
+            {
+                Console.Write("Enter the number of array elements - ");
+                enteredString = Console.ReadLine();
+            }
+            while (!int.TryParse(enteredString, out lengthOfArr));
+            int[,,] arr = new int[lengthOfArr, lengthOfArr, lengthOfArr];
+
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    for (int k = 0; k < arr.GetLength(2); k++)
+                    {
+                        arr[i, j, k] = r.Next(-30, 30);
+                    }
+                }
+            }
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                PrintTwoDimensionalArr(i, arr);
+            }
+            Console.WriteLine();
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    for (int k = 0; k < arr.GetLength(2); k++)
+                    {
+                        if (arr[i, j, k] > 0)
+                        {
+                            arr[i, j, k] = 0;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                PrintTwoDimensionalArr(i, arr);
+            }
+            Console.WriteLine();
+
+        }
+        private static void NonNegativeSum()
+        {
+            int lengthOfArr;
+            int sum=0;
+            string enteredString;
+            Random r = new Random();
+            do
+            {
+                Console.Write("Enter the number of array elements - ");
+                enteredString = Console.ReadLine();
+            }
+            while (!int.TryParse(enteredString, out lengthOfArr));
+            int[] arr = new int[lengthOfArr];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = r.Next(-30, 30);
+            }
+            PrintArr(arr);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if(arr[i]>=0)
+                {
+                    sum += arr[i];
+                }
+            }
+            Console.WriteLine("Sum of non-positive number is - {0}", sum);
+
+        }
+        private static void GetSumOfEvenNumber()
+        {
+            int lengthOfArr;
+            int sum = 0;
+            string enteredString;
+            Random r = new Random();
+            do
+            {
+                Console.Write("Enter the number of array elements - ");
+                enteredString = Console.ReadLine();
+            }
+            while (!int.TryParse(enteredString, out lengthOfArr));
+            int[,] arr = new int[lengthOfArr, lengthOfArr];
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    arr[i, j] = r.Next(-10, 10);
+                }
+            }
+            PrintTwoDimensionalArr(arr);
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    if((i+j)%2==0)
+                    {
+                        sum += arr[i, j];
+                    }
+                }
+            }
+            Console.WriteLine("Sum of even number is - {0}",sum);
+        }
 
     }
 
 }
+
+
+
 
