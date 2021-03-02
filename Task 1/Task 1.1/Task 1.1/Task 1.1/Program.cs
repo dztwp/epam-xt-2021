@@ -8,24 +8,26 @@ namespace Task_1._1
 {
     class Program
     {
+        static string nextStr = Environment.NewLine;
         static void Main(string[] args)
         {
             int numOfTask;
             string enteredString;
+            
             while (true)
             {
                 Console.WriteLine("Select task from list: " +
-                    "\n 1. RECTANGLE" +
-                    "\n 2. TRIANGLE" +
-                    "\n 3. ANOTHER TRIANGLE" +
-                    "\n 4. X-MAS TREE" +
-                    "\n 5. SUM OF NUMBERS" +
-                    "\n 6. FONT ADJUSTMENT" +
-                    "\n 7. ARRAY PROCESSING" +
-                    "\n 8. NO POSITIVE " +
-                    "\n 9. NON-NEGATIVE SUM " +
-                    "\n 10. 2D ARRAY" +
-                    "\n");
+                    nextStr+" 1. RECTANGLE" +
+                    nextStr+" 2. TRIANGLE" +
+                    nextStr+" 3. ANOTHER TRIANGLE" +
+                    nextStr+" 4. X-MAS TREE" +
+                    nextStr+" 5. SUM OF NUMBERS" +
+                    nextStr+" 6. FONT ADJUSTMENT" +
+                    nextStr+" 7. ARRAY PROCESSING" +
+                    nextStr+" 8. NO POSITIVE " +
+                    nextStr+" 9. NON-NEGATIVE SUM " +
+                    nextStr+" 10. 2D ARRAY" +
+                    nextStr+"");
 
                 enteredString = Console.ReadLine();
                 if (!int.TryParse(enteredString, out numOfTask))
@@ -243,10 +245,10 @@ namespace Task_1._1
                 int enteredNumber;
                 Console.Write("Параметры надписи: ");
                 PrintArr(arr);
-                Console.WriteLine("\nВведите: \n" +
-                    "\t 1:bold \n" +
-                    "\t 2:italic \n" +
-                    "\t 3:underline \n");
+                Console.WriteLine("Введите: " + nextStr+
+                    "    1:bold " + nextStr +
+                    "    2:italic " + nextStr +
+                    "    3:underline "+ nextStr);
                 string strForNum = Console.ReadLine();
                 if (int.TryParse(strForNum, out enteredNumber))
                 {
