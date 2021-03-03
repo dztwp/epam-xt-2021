@@ -28,6 +28,7 @@ namespace Task_1._2
                     }
                 case 2:
                     {
+                        Doubler();
                         break;
                     }
                 case 3:
@@ -57,6 +58,28 @@ namespace Task_1._2
             }
             average = (int)Math.Ceiling((decimal)(sumOfLengths / arrOfString.Length));     //Округление до большего целого
             Console.WriteLine($"Average number of characters is - {average}");
+        }
+        static void Doubler()
+        {
+            Console.WriteLine("Input first string:");
+            string firstString = Console.ReadLine();
+            StringBuilder outputString = new StringBuilder(firstString);
+            Console.WriteLine("Input second string:");
+            string secondString = Console.ReadLine();
+            char[] charsOfSecondString = secondString.ToCharArray();
+            for (int i = 0; i < outputString.Length; i++)
+            {
+                for (int j = 0; j < charsOfSecondString.Length; j++)
+                {
+                    if(outputString[i]==charsOfSecondString[j]&&!char.IsSeparator(charsOfSecondString[j]))
+                    {
+                        outputString.Insert(i, charsOfSecondString[j]);
+                        i++;
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine(outputString);
         }
     }
 }
