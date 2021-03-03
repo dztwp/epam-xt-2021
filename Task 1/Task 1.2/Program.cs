@@ -47,7 +47,7 @@ namespace Task_1._2
         {
             Console.WriteLine("Input some string:");
             string inputString = Console.ReadLine();
-            char[] charSeparator = new char[] {' ','.',','};
+            char[] charSeparator = new char[] { ' ', '.', ',' };
             int sumOfLengths = 0;
             int average = 0;
             string[] arrOfString = inputString.Split(charSeparator, StringSplitOptions.RemoveEmptyEntries);
@@ -55,7 +55,7 @@ namespace Task_1._2
             {
                 sumOfLengths += item.Length;
             }
-            average =(int) Math.Ceiling((decimal)(sumOfLengths/arrOfString.Length));     //Округление до большего целого
+            average = (int)Math.Ceiling((decimal)(sumOfLengths / arrOfString.Length));     //Округление до большего целого
             Console.WriteLine($"Average number of characters is - {average}");
         }
     }

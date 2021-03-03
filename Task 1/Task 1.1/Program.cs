@@ -13,21 +13,21 @@ namespace Task_1._1
         {
             int numOfTask;
             string enteredString;
-            
+
             while (true)
             {
                 Console.WriteLine("Select task from list: " +
-                    nextStr+" 1. RECTANGLE" +
-                    nextStr+" 2. TRIANGLE" +
-                    nextStr+" 3. ANOTHER TRIANGLE" +
-                    nextStr+" 4. X-MAS TREE" +
-                    nextStr+" 5. SUM OF NUMBERS" +
-                    nextStr+" 6. FONT ADJUSTMENT" +
-                    nextStr+" 7. ARRAY PROCESSING" +
-                    nextStr+" 8. NO POSITIVE " +
-                    nextStr+" 9. NON-NEGATIVE SUM " +
-                    nextStr+" 10. 2D ARRAY" +
-                    nextStr+"");
+                    nextStr + " 1. RECTANGLE" +
+                    nextStr + " 2. TRIANGLE" +
+                    nextStr + " 3. ANOTHER TRIANGLE" +
+                    nextStr + " 4. X-MAS TREE" +
+                    nextStr + " 5. SUM OF NUMBERS" +
+                    nextStr + " 6. FONT ADJUSTMENT" +
+                    nextStr + " 7. ARRAY PROCESSING" +
+                    nextStr + " 8. NO POSITIVE " +
+                    nextStr + " 9. NON-NEGATIVE SUM " +
+                    nextStr + " 10. 2D ARRAY" +
+                    nextStr + "");
 
                 enteredString = Console.ReadLine();
                 if (!int.TryParse(enteredString, out numOfTask))
@@ -130,14 +130,14 @@ namespace Task_1._1
             }
             Console.WriteLine();
         }
-        private static void PrintTwoDimensionalArr(int numOfThirdDimension,int[,,]arr)
+        private static void PrintTwoDimensionalArr(int numOfThirdDimension, int[,,] arr)
         {
             for (int j = 0; j < arr.GetLength(1); j++)
             {
                 Console.WriteLine();
                 for (int k = 0; k < arr.GetLength(2); k++)
                 {
-                    Console.Write(arr[numOfThirdDimension, j, k]+" ");
+                    Console.Write(arr[numOfThirdDimension, j, k] + " ");
                 }
             }
         }
@@ -152,7 +152,7 @@ namespace Task_1._1
                 Console.WriteLine();
             }
             Console.WriteLine();
-            
+
         }
         static string GetAreaOfRectangle()
         {
@@ -245,10 +245,10 @@ namespace Task_1._1
                 int enteredNumber;
                 Console.Write("Параметры надписи: ");
                 PrintArr(arr);
-                Console.WriteLine("Введите: " + nextStr+
+                Console.WriteLine("Введите: " + nextStr +
                     "    1:bold " + nextStr +
                     "    2:italic " + nextStr +
-                    "    3:underline "+ nextStr);
+                    "    3:underline " + nextStr);
                 string strForNum = Console.ReadLine();
                 if (int.TryParse(strForNum, out enteredNumber))
                 {
@@ -302,13 +302,13 @@ namespace Task_1._1
         }
         private static int[] SortArray(int[] arr)
         {
-            int tmp = 0 ;
+            int tmp = 0;
             int[] returnableArr = arr;
             for (int i = 0; i < returnableArr.Length; i++)
             {
                 for (int j = 1; j < returnableArr.Length; j++)
                 {
-                    if(arr[j-1]> returnableArr[j])
+                    if (arr[j - 1] > returnableArr[j])
                     {
                         tmp = returnableArr[j];
                         returnableArr[j] = returnableArr[j - 1];
@@ -332,10 +332,10 @@ namespace Task_1._1
         }
         private static int GetMin(int[] arr)
         {
-            int min=arr[0];
+            int min = arr[0];
             for (int i = 1; i < arr.Length; i++)
             {
-                if(arr[i]<arr[i-1])
+                if (arr[i] < arr[i - 1])
                 {
                     min = arr[i];
                 }
@@ -393,7 +393,7 @@ namespace Task_1._1
         private static void NonNegativeSum()
         {
             int lengthOfArr;
-            int sum=0;
+            int sum = 0;
             string enteredString;
             Random r = new Random();
             do
@@ -410,7 +410,7 @@ namespace Task_1._1
             PrintArr(arr);
             for (int i = 0; i < arr.Length; i++)
             {
-                if(arr[i]>=0)
+                if (arr[i] >= 0)
                 {
                     sum += arr[i];
                 }
@@ -443,19 +443,14 @@ namespace Task_1._1
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    if((i+j)%2==0)
+                    if ((i + j) % 2 == 0)
                     {
                         sum += arr[i, j];
                     }
                 }
             }
-            Console.WriteLine("Sum of even number is - {0}",sum);
+            Console.WriteLine("Sum of even number is - {0}", sum);
         }
 
     }
-
 }
-
-
-
-
