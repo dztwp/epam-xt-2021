@@ -33,10 +33,12 @@ namespace Task_1._2
                     }
                 case 3:
                     {
+                        Lowercase();
                         break;
                     }
                 case 4:
                     {
+                        Validator();
                         break;
                     }
 
@@ -71,7 +73,7 @@ namespace Task_1._2
             {
                 for (int j = 0; j < charsOfSecondString.Length; j++)
                 {
-                    if(outputString[i]==charsOfSecondString[j]&&!char.IsSeparator(charsOfSecondString[j]))
+                    if (outputString[i] == charsOfSecondString[j] && !char.IsSeparator(charsOfSecondString[j]))
                     {
                         outputString.Insert(i, charsOfSecondString[j]);
                         i++;
@@ -80,6 +82,72 @@ namespace Task_1._2
                 }
             }
             Console.WriteLine(outputString);
+        }
+        static void Lowercase()
+        {
+            Console.WriteLine("Input some string:");
+            string inputString = Console.ReadLine();
+            Console.WriteLine("Choose variant of task:" + nextString + "1.Separator is spacebar only" + nextString + "2.Separator with differnt separators");
+            int chooseSeparatorPart;
+            string inputNumberString;
+            string[] arrOfStrings = null;
+            do
+            {
+                inputNumberString = Console.ReadLine();
+            }
+            while (!int.TryParse(inputNumberString, out chooseSeparatorPart));
+            switch (chooseSeparatorPart)
+            {
+                case 1:
+                    {
+                        arrOfStrings = inputString.Split(' ');
+                        break;
+                    }
+                case 2:
+                    {
+                        arrOfStrings = inputString.Split(',', '.', ';', ':', ' ');
+                        break;
+                    }
+                default:
+                    break;
+            }
+            int counter = 0;
+            for (int i = 0; i < arrOfStrings.Length; i++)
+            {
+                if (arrOfStrings[i] != "" && Char.IsLower(arrOfStrings[i][0]))
+                {
+                    counter++;
+                }
+            }
+            Console.WriteLine(counter);
+        }
+        static void Validator()
+        {
+            Console.WriteLine("Input some string:");
+            StringBuilder inputSB = new StringBuilder(Console.ReadLine().Trim());
+            int counter = 0;
+            for (int i = 0; i < inputSB.Length; i++)
+            {
+                if (inputSB[i] == '.' || inputSB[i] == '?' || inputSB[i] == '!')
+                {
+                    inputSB[i - counter] = char.ToUpper(inputSB[i - counter]);
+                    counter = 0;
+                    if (i + 1 != inputSB.Length)
+                    {
+                        int j = i;
+                        while (inputSB[j+1]==' ') // Counting the number of spaces before the beginning of a line
+                        {
+                            counter--;
+                            j++;
+                        }
+                    }
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+            Console.WriteLine(inputSB);
         }
     }
 }
