@@ -43,7 +43,7 @@ namespace Task_2._2
                         {
                             try
                             {
-                                user1.AddFigure(CreateFigure());
+                                user1.AddFigure(CreateFigure()); //try catch перенести в метод!!!
                             }
                             catch (ArgumentException)
                             {

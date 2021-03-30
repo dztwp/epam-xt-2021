@@ -12,12 +12,13 @@ namespace Task_2._2
         Circle outerCircle;
         public Ring(Point startPoint,double innerRadius, double outerRadius):base(startPoint)
         {
-            innerCircle = new Circle(StartPoint, innerRadius);
-            outerCircle = new Circle(StartPoint, outerRadius);
-            if(innerCircle.Radius>outerCircle.Radius)
+            if (innerCircle.Radius > outerCircle.Radius)
             {
                 throw new ArgumentException("Внутренний радиус должен быть меньше внешнего");
-            }    
+            }
+            innerCircle = new Circle(StartPoint, innerRadius);
+            outerCircle = new Circle(StartPoint, outerRadius);
+           
         }
 
 

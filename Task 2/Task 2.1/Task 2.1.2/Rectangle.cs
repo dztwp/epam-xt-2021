@@ -14,7 +14,7 @@ namespace Task_2._2
         public Line Diagonal { get; set; }
         public Line SideA
         {
-            get { return _sideOfRectangleA; }
+            get { return _sideOfRectangleA; } //считать по координатам
             set { _sideOfRectangleA = value; }
         }
         public Line SideB

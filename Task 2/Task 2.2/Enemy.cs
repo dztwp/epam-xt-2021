@@ -13,13 +13,8 @@ namespace Task_2._2
         public int Damage
         {
             get { return damage; }
-            set 
-            {
-                
-                damage =(damage>0)? value:throw new ArgumentException("Damage must be positive");
-            }
         }
-
+// Add moveToPlayer
 
         public virtual void DoDamage(Player pl)
         {

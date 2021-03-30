@@ -17,7 +17,7 @@ namespace Task_2._2
         public Line FirstLine
         {
             get { return _firstLine; }
-            set { _firstLine = value; }
+            set { _firstLine = value; } //убрать свойства
         }
         public Line SecondLine
         {

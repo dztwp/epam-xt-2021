@@ -37,7 +37,7 @@ namespace CustomableStringTool
         {
             if (index == 0 || index < _arr.Length)
             {
-                throw new ArgumentException();
+                throw new ArgumentException(); //
             }
             return true;
         }

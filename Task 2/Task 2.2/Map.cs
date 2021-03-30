@@ -22,7 +22,7 @@ namespace Task_2._2
             get { return length; }
             set { length = value; }
         }
-
+        //Array of MapObjects++
 
     }
 }
