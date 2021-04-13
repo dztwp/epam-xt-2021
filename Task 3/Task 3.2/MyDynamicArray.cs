@@ -13,7 +13,7 @@ namespace Task_3._2
 
         private int _length;
 
-        public int Count => Capacity;
+        public int Count => Capacity;//Legth поменять
 
         public bool IsReadOnly => false;
 
@@ -65,7 +65,7 @@ namespace Task_3._2
             if (_arr.Contains(item))
             {
                 _arr = _arr.Where(s => !s.Equals(item)).ToArray();
-                Array.Resize(ref _arr, Length);
+                Array.Resize(ref _arr, Length);//Переделать
                 return true;
             }
             else
@@ -75,14 +75,8 @@ namespace Task_3._2
         }
         public bool Insert(T item, int position)
         {
-            try
-            {
-                if (position >= Capacity || position < 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }                
-            }
-            catch (ArgumentOutOfRangeException)
+
+            if (position >= Capacity || position < 0)
             {
                 return false;
             }
@@ -91,7 +85,7 @@ namespace Task_3._2
             {
                 ResizeArr(2);
             }
-            List<T> tmpList = new List<T>();
+            List<T> tmpList = new List<T>();//Переставить с конца
             for (int i = 0; i < _arr.Length; i++)
             {
                 if (position == i)
@@ -113,7 +107,7 @@ namespace Task_3._2
 
         public bool Contains(T item) => _arr.Contains(item) ? true : false;
 
-        public void CopyTo(T[] array, int arrayIndex)=> _arr.CopyTo(array, arrayIndex);
+        public void CopyTo(T[] array, int arrayIndex) => _arr.CopyTo(array, arrayIndex);
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -130,12 +124,12 @@ namespace Task_3._2
 
             get
             {
-                return (index > Length)? _arr[index]:throw new ArgumentOutOfRangeException();
+                return (index < Length && index > 0) ? _arr[index] : throw new ArgumentOutOfRangeException();
             }
 
             set
             {
-                _arr[index]= (index > Length) ?  value : throw new ArgumentOutOfRangeException();
+                _arr[index] = (index < Length && index > 0) ? value : throw new ArgumentOutOfRangeException();
             }
         }
 

@@ -17,7 +17,7 @@ namespace Task_3._1._1
             AddPersons(n);
         }
 
-        private void AddPersons(int numberOfPersons)
+        private void AddPersons(int numberOfPersons)//InitializeArray
         {
             for (int i = 1; i <= numberOfPersons; i++)
             {
