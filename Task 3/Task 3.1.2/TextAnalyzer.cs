@@ -21,7 +21,7 @@ namespace Task_3._1._2
             return _analyzedString.Split(separators, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        public void AnalyzeText()
+        public void AnalyzeText()//StartAnalyze(3 Метода внутри)
         {
             string[] arrOfWords = GetArrOfWords();
             for (int i = 0; i < arrOfWords.Length; i++)

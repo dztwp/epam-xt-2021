@@ -21,7 +21,7 @@ namespace Task_3._2
             ll.Add(4);
             MyDynamicArray<int> arr = new MyDynamicArray<int>(ll);
             arr.Remove(5);
-            arr.Insert(11, -1);
+            arr.Insert(11, 5);
             foreach (var item in arr)
             {
                 Console.WriteLine(item);
