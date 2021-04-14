@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Timers;
+using System.Linq;
 
 namespace Task_3._3._3
 {
@@ -11,28 +12,25 @@ namespace Task_3._3._3
         public bool IsOrderRecieved{ get; set; }
 
         private Timer _timer;
-        public bool IsDone { get; set; }
-        public User Customer { get;}
+        public int NumOfOrder { get; }
         public List<Pizza> PizzasList { get; set; }
 
-        public Order(User name, List<Pizza>listOfPizza)
+        public Order(int numberOfOrder, List<Pizza>listOfPizza)
         {
-            Customer = name;
+            NumOfOrder = numberOfOrder;
             PizzasList = listOfPizza;
-            IsDone = false;
         }
-        public void StartTimer(int multiply)
+        public void StartCooking(Order someOrder)
         {
              _timer = new Timer();
-            _timer.Interval = 5000*multiply;
+            _timer.Interval = someOrder.PizzasList.Sum(x=>x.TimeForCooking)*someOrder.PizzasList.Count*500;
             _timer.Elapsed += OnTimedEvent;
             _timer.Start();
         }
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             _timer.Stop();
-            IsDone = true;
-            Console.WriteLine($"Заказ покупателя {Customer.NumberOfOrder} готов");                   
+            Console.WriteLine($"Заказ покупателя {NumOfOrder} готов");                   
         }
     }
 }

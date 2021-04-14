@@ -14,10 +14,10 @@ namespace Task_3._1._1
 
         public RoundOfPerson(int n)
         {
-            AddPersons(n);
+            InitializeArray(n);
         }
 
-        private void AddPersons(int numberOfPersons)//InitializeArray
+        private void InitializeArray(int numberOfPersons)
         {
             for (int i = 1; i <= numberOfPersons; i++)
             {

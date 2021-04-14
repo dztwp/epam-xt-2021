@@ -13,11 +13,10 @@ namespace Task_3._2
 
         private int _length;
 
-        public int Count => Capacity;//Legth поменять
+        public int Count => _length;//Legth поменять
 
         public bool IsReadOnly => false;
 
-        public int Length => _length;
 
         public int Capacity => _arr.Length;
 
@@ -45,7 +44,7 @@ namespace Task_3._2
                 ResizeArr(2);
             }
             _length++;
-            _arr[Length] = newElementOfArray;
+            _arr[Count] = newElementOfArray;
         }
 
         public void AddRange(IEnumerable<T> newValues)
@@ -64,8 +63,10 @@ namespace Task_3._2
         {
             if (_arr.Contains(item))
             {
-                _arr = _arr.Where(s => !s.Equals(item)).ToArray();
-                Array.Resize(ref _arr, Length);//Переделать
+                T[]tmpArr = _arr.Where(s => !s.Equals(item)).ToArray();
+                _length = tmpArr.Length;
+                Array.Clear(_arr, 0, _arr.Length);
+                Array.Copy(tmpArr,_arr,Count);
                 return true;
             }
             else
@@ -85,25 +86,24 @@ namespace Task_3._2
             {
                 ResizeArr(2);
             }
-            List<T> tmpList = new List<T>();//Переставить с конца
-            for (int i = 0; i < _arr.Length; i++)
+            for (int i = _arr.Length-2; i > 0; i--)
             {
                 if (position == i)
                 {
-                    tmpList.Add(item);
+                    _arr[i] = item;
+                    break;
                 }
                 else
                 {
-                    tmpList.Add(_arr[i]);
+                    _arr[i + 1] = _arr[i];
                 }
             }
-            _arr = tmpList.ToArray();
             _length++;
             return true;
 
         }
 
-        public void Clear() => Array.Clear(_arr, 0, Length);
+        public void Clear() => Array.Clear(_arr, 0, Count);
 
         public bool Contains(T item) => _arr.Contains(item) ? true : false;
 
@@ -111,7 +111,7 @@ namespace Task_3._2
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < Length; i++)
+            for (int i = 0; i < Count; i++)
             {
                 yield return _arr[i];
             }
@@ -124,17 +124,17 @@ namespace Task_3._2
 
             get
             {
-                return (index < Length && index > 0) ? _arr[index] : throw new ArgumentOutOfRangeException();
+                return (index < Count && index > 0) ? _arr[index] : throw new ArgumentOutOfRangeException();
             }
 
             set
             {
-                _arr[index] = (index < Length && index > 0) ? value : throw new ArgumentOutOfRangeException();
+                _arr[index] = (index < Count && index > 0) ? value : throw new ArgumentOutOfRangeException();
             }
         }
 
 
-        private bool IsNeedToResize(int sizeOfArr) => (Capacity - Length >= sizeOfArr) ? true : false;
+        private bool IsNeedToResize(int sizeOfArr) => (Capacity - Count >= sizeOfArr) ? true : false;
 
         private void ResizeArr(int multiply) => Array.Resize<T>(ref _arr, Capacity * multiply);
 
@@ -143,7 +143,7 @@ namespace Task_3._2
             int i = 2;
             while (true)
             {
-                if (countOfNewArr + Length < Capacity * i)
+                if (countOfNewArr + Count < Capacity * i)
                 {
                     return i;
                 }
