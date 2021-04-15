@@ -21,7 +21,16 @@ namespace Task_3._1._2
             return _analyzedString.Split(separators, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        public void AnalyzeText()//StartAnalyze(3 Метода внутри)
+       
+
+        public void StartAnalyze()
+        {
+            AnalyzeText();
+            PrintAnalysis();
+            PrintMostUsableWords();
+        }
+
+        public void AnalyzeText()
         {
             string[] arrOfWords = GetArrOfWords();
             for (int i = 0; i < arrOfWords.Length; i++)
@@ -35,24 +44,21 @@ namespace Task_3._1._2
                     _occurenceOfStrings.Add(arrOfWords[i].ToLower(), 1);
                 }
             }
-            PrintAnalysis(_occurenceOfStrings);
-            PrintMostUsableWords(_occurenceOfStrings);
-
         }
 
-        private void PrintAnalysis(Dictionary<string, int> inputData)
+        private void PrintAnalysis()
         {
             Console.WriteLine("Слово - количество");
-            foreach (var pair in inputData.OrderByDescending(pair => pair.Value))
+            foreach (var pair in _occurenceOfStrings.OrderByDescending(pair => pair.Value))
             {
                 Console.WriteLine($"{pair.Key} - {pair.Value}");
             }
         }
-        private void PrintMostUsableWords(Dictionary<string, int> inputData)
+        private void PrintMostUsableWords()
         {
-            int averageValue = GetSumOfDictionaryValues(_occurenceOfStrings) / inputData.Count;
+            int averageValue = GetSumOfDictionaryValues(_occurenceOfStrings) / _occurenceOfStrings.Count;
             Console.WriteLine("Слова которые встречается чаще других:");
-            foreach (var item in inputData.OrderByDescending(item => item.Value))
+            foreach (var item in _occurenceOfStrings.OrderByDescending(item => item.Value))
             {
                 if (item.Value > averageValue * 2)
                 {

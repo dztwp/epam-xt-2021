@@ -6,12 +6,16 @@ namespace Task_3._3._3
 {
     class User
     {
-        public int NumberOfOrder { get;}
-        public bool IsOrderGetted { get; set; }
-        public User(int numOfOrder)
+        public event EventHandler<List<Pizza>> UserEvent;
+        public String Name { get;}
+        public User(string name)
         {
-            NumberOfOrder = numOfOrder;
-            IsOrderGetted = false;
+            Name = name;
+        }
+
+        public void MakeOrder(List<Pizza> pizzaList)
+        {
+            UserEvent?.Invoke(this, pizzaList);
         }
     }
 }
