@@ -103,5 +103,12 @@ namespace Task_4
                     }
             }
         }
+        public static void PrintException(Exception? ex)
+        {
+            if (ex != null)
+            {
+                Console.WriteLine($"Произошла ошибка при отслеживании данных:{Environment.NewLine}{ex.Message}");
+            }
+        }
     }
 }

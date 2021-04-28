@@ -25,15 +25,20 @@ namespace Task_4
             _watcher = new FileSystemWatcher(pathOfResearchingFolder);
             _logDirectory = new DirectoryInfo(pathToLogFolder);
             _researchDirectory = new DirectoryInfo(pathOfResearchingFolder);
+            InitializeFileSystemWatcher();
 
+        }
+
+        private void InitializeFileSystemWatcher()
+        {
             _watcher.NotifyFilter = NotifyFilters.Attributes
-                                 | NotifyFilters.CreationTime
-                                 | NotifyFilters.DirectoryName
-                                 | NotifyFilters.FileName
-                                 | NotifyFilters.LastAccess
-                                 | NotifyFilters.LastWrite
-                                 | NotifyFilters.Security
-                                 | NotifyFilters.Size;
+                                             | NotifyFilters.CreationTime
+                                             | NotifyFilters.DirectoryName
+                                             | NotifyFilters.FileName
+                                             | NotifyFilters.LastAccess
+                                             | NotifyFilters.LastWrite
+                                             | NotifyFilters.Security
+                                             | NotifyFilters.Size;
             _watcher.Filter = "*.txt";
             _watcher.Changed += OnChanged;
             _watcher.Created += OnCreated;
@@ -42,14 +47,11 @@ namespace Task_4
             _watcher.Error += OnError;
             _watcher.IncludeSubdirectories = true;
             _watcher.EnableRaisingEvents = true;
-
-
         }
-
 
         private void OnError(object sender, ErrorEventArgs e)
         {
-
+            PrintInfo.PrintException(e.GetException());
         }
 
         private void OnRenamed(object sender, RenamedEventArgs e)
