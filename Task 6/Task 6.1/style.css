@@ -1,0 +1,24 @@
+.boxDescription{
+    box-sizing: border-box;
+    width: 200px;
+    height: auto;
+    background-color:rgb(238, 225, 111);
+    border-radius: 10px;
+    border:1px solid black;
+    box-shadow: 5px 5px 0 0 brown;
+    
+}
+ul{
+    list-style-type: none;
+    padding-left: 7px;
+    padding-right: 3px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+ul>li{
+    padding-bottom: 7px;
+    color: brown;
+    font-size: 14px;
+    font-weight: 500;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
