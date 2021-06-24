@@ -1,6 +1,7 @@
 function charRemover(){
 let inputString=document.getElementById("input").value+"";
-let arr=inputString.split(" ").join("").split("?").join("").split("!").join().split(":").join("").split(";").join("").split(',').join("").split(".").join("");
+let separators=[" ","?","!",":",";",",","."]
+let arr=splitStringBySeparators(inputString,separators);
 
 for (let index = 0; index < inputString.length; index++) {
     if(arr.indexOf(inputString[index])!=arr.lastIndexOf(inputString[index])){
@@ -17,4 +18,11 @@ while (ArrayOfSymbols.indexOf(symbol)!=-1) {
     console.log(ArrayOfSymbols);
 }
     return ArrayOfSymbols.join("");
+}
+
+function splitStringBySeparators(inString,separators){
+    for (let index = 0; index < separators.length; index++) {
+        inString = inString.split(separators[index]).join(""); 
+    }
+    return inString;
 }
