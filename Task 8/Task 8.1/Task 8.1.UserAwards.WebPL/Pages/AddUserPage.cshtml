@@ -1,0 +1,50 @@
+﻿@using Task_8._1.UserAwards.Dependencies
+@using Task_8._1.UserAwards.Common.Entities
+
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+    var userBLL = DependencyResolver.Instance.userBLL;
+}
+@if (IsPost)
+{
+    string name = Request["name"];
+    if (userBLL.IsUserExist(name))
+    {
+        <div class="alert alert-danger" role="alert">
+            Пользователь с указанными данными уже существует
+        </div>
+    }
+    else
+    {
+        DateTime dateTime;
+        if (name != "" && DateTime.TryParse(Request["dateTime"], out dateTime))
+        {
+            userBLL.AddUser(new User(name, dateTime));
+        <div class="alert alert-success" role="alert">
+            Пользователь был успешно создан
+        </div>
+            Response.Redirect("index");
+        }
+        else
+        {
+        <div class="alert alert-danger" role="alert">
+            Введены неправильные данные!
+        </div>
+        }
+    }
+}
+<form method="post">
+    <div class="form-group col-sm-9">
+        <label for="exampleInputEmail1">Имя пользователя</label>
+        <div>
+            <input name="name" type="text" class="form-control col-sm-9" id="exampleInputEmail1" placeholder="Enter user name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="birthDate" class="col-sm-3 control-label">Дата рождения</label>
+        <div class="col-sm-9">
+            <input name="dateTime" type="date" id="birthDate" class="form-control">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Создать пользователя</button>
+</form>

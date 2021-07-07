@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+
+    PageData["Title"] = "Стартовая страница";
+
+}
+
+<div class= "menu col-sm-3">
+    <form method="post" >
+
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button id="UserAdd" type="button" class="btn btn-secondary">Добавить пользователя</button>
+            <button id="AwardsListGetting"type="button" class="btn btn-secondary">Показать список наград</button>
+
+        </div>
+
+    </form>
+</div>
+@RenderPage("~/Pages/Partial/ListOfUsers.cshtml")
+
+

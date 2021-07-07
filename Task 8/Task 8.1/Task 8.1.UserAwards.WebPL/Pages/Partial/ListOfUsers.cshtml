@@ -1,0 +1,16 @@
+﻿@using Task_8._1.UserAwards.Dependencies
+@using Task_8._1.UserAwards.Common.Entities
+@{
+    var userBLL = DependencyResolver.Instance.userBLL;
+    IEnumerable<User> userList = userBLL.GetAllUsers();
+
+}
+
+<div class="col-sm-4 partialPageDescription">
+
+    @foreach (var item in userList)
+    {
+        <div class="col-sm-5"><a href="/Pages/UserPage?Id=@item.Id">@item.Name</a></div>
+        <div class="col-sm-6">@item.Age</div>
+    }
+</div>

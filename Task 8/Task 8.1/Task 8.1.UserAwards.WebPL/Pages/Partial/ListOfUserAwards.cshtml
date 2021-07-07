@@ -1,0 +1,15 @@
+﻿@using Task_8._1.UserAwards.Dependencies
+@using Task_8._1.UserAwards.Common.Entities
+@{
+    var userBLL = DependencyResolver.Instance.userBLL;
+    IEnumerable<Award> awardsList = userBLL.GetUserAwards(Guid.Parse(Request.QueryString["Id"]));
+
+}
+
+<div class="col-sm-4 partialPageDescription">
+
+    @foreach (var item in awardsList)
+    {
+        <div class="col-sm-5">@item.Title</div>
+    }
+</div>

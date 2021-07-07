@@ -1,0 +1,27 @@
+﻿@using Task_8._1.UserAwards.Dependencies;
+@using Task_8._1.UserAwards.Common.Entities;
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+    var _userBLL = DependencyResolver.Instance.userBLL;
+    var user = _userBLL.GetUserById(Guid.Parse(Request.QueryString["UserId"]));
+    var _awardBLL = DependencyResolver.Instance.awardBLL;
+    IEnumerable<Award> awardList = _awardBLL.GetAllAwards();
+    PageData["Title"] = "AddAwardToUserPage";
+}
+<div class="col-sm-5">
+    <div class="col-sm-12">
+        <span>Имя:</span>
+        <span>@user.Name</span>
+    </div>
+</div>
+
+<div class="col-sm-4 partialPageDescription">
+    <h4>Выберите награду для добавления пользователю</h4>
+    @foreach (var item in awardList)
+    {
+        <div class="col-sm-11"><a href="~/Pages/UserAwardPage?UserId=@user.Id&AwardId=@item.Id">@item.Title</a></div>
+    }
+</div>
+
+
+

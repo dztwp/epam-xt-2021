@@ -1,0 +1,9 @@
+﻿@using Task_8._1.UserAwards.Dependencies;
+@using Task_8._1.UserAwards.Common.Entities;
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+    var _userBLL = DependencyResolver.Instance.userBLL;
+    var user = _userBLL.GetUserById(Guid.Parse(Request.QueryString["Id"]));
+    _userBLL.DeleteUser(user.Id);
+    Response.Redirect("~/Pages/index.cshtml");
+}
