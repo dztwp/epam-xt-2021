@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+
+    PageData["Title"] = "Страница наград";
+
+}
+
+<div class="menu col-sm-3">
+    <form method="post">
+
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button id="AwardAdd" type="button" class="btn btn-secondary">Добавить новую награду</button>
+            <button id="ToIndex" type="button" class="btn btn-secondary">На начальную страницу</button>
+
+        </div>
+
+    </form>
+</div>
+@RenderPage("~/Pages/Partial/ListOfAwards.cshtml")

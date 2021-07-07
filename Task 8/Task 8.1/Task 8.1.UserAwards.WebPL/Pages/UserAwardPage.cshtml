@@ -1,0 +1,28 @@
+﻿@using Task_8._1.UserAwards.Dependencies;
+@using Task_8._1.UserAwards.Common.Entities;
+@using System.Threading;
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+    var _userBLL = DependencyResolver.Instance.userBLL;
+    Guid userId = Guid.Parse(Request.QueryString["UserId"]);
+    Guid awardID = Guid.Parse(Request.QueryString["AwardId"]);
+
+    PageData["Title"] = "AddingPage";
+
+}
+
+@if (!_userBLL.IsUserHasAward(userId, awardID))
+{
+    _userBLL.AssignAwardToUser(userId, awardID);
+    <div class="alert alert-success" role="alert">
+        Награда успешно добавлена
+    </div>
+    Response.Redirect(String.Format("/Pages/UserPage?Id={0}",userId));
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Указанная награда уже присвоена пользователю
+    </div>
+    Response.Redirect(String.Format("/Pages/UserPage?Id={0}", userId));
+}

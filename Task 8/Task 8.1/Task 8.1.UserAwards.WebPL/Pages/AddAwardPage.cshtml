@@ -1,0 +1,43 @@
+﻿@using Task_8._1.UserAwards.Dependencies
+@using Task_8._1.UserAwards.Common.Entities
+
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+    var awardBLL = DependencyResolver.Instance.awardBLL;
+}
+@if (IsPost)
+{
+    string title = Request["title"];
+    if (awardBLL.IsAwardAlreadyExist(title))
+    {
+        <div class="alert alert-danger" role="alert">
+            Данная награда уже существует
+        </div>
+    }
+    else
+    {
+        if (title != "")
+        {
+            awardBLL.AddAward(new Award(title));
+        <div class="alert alert-success" role="alert">
+            Пользователь был успешно создан
+        </div>
+            Response.Redirect("AwardsListPage");
+        }
+        else
+        {
+        <div class="alert alert-danger" role="alert">
+            Введены неправильные данные!
+        </div>
+        }
+    }
+}
+<form method="post">
+    <div class="form-group col-sm-9">
+        <label for="exampleInputEmail1">Название награды</label>
+        <div>
+            <input name="title" type="text" class="form-control col-sm-9" id="exampleInputEmail1" placeholder="Enter award name">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Создать награду</button>
+</form>

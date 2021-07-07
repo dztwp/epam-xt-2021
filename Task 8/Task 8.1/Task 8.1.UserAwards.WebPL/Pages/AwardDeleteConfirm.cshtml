@@ -1,0 +1,28 @@
+﻿@using Task_8._1.UserAwards.Dependencies;
+@using Task_8._1.UserAwards.Common.Entities;
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+    var _awardBLL = DependencyResolver.Instance.awardBLL;
+    var award = _awardBLL.GetAwardById(Guid.Parse(Request.QueryString["Id"]));
+    PageData["Title"] = "AwardPage";
+}
+
+<div class="col-sm-12">
+    <h2>
+        Удаление награды приведет к удалению этой награды у всех пользователей, вы уверены, что хотите это сделать?
+    </h2>
+    <form method="post">
+
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <div class="col-sm-5">
+                <button id="YesAnswer" type="button" class="btn btn-secondary" value="@award.Id">Да</button>
+            </div>
+            <div class="col-sm-5">
+                <button id="NoAnswer" type="button" class="btn btn-secondary" >Нет</button>
+            </div>
+            
+
+        </div>
+
+    </form>
+</div>

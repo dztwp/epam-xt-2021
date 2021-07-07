@@ -1,0 +1,27 @@
+﻿@{
+    string pageName = null;
+    if (PageData.ContainsKey("Title"))
+    {
+        pageName = PageData["Title"];
+    }
+    else
+    {
+        pageName = "UnknownPage";
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@pageName</title>
+    @RenderSection("scripts", required: false);
+</head>
+<body>
+    <div>@RenderBody();</div>
+    
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

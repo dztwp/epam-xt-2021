@@ -1,0 +1,27 @@
+﻿@using Task_8._1.UserAwards.Dependencies;
+@using Task_8._1.UserAwards.Common.Entities;
+@{
+    Layout = "~/Pages/Layout/_BasicLayout.cshtml";
+    var _awardBLL = DependencyResolver.Instance.awardBLL;
+    var award = _awardBLL.GetAwardById(Guid.Parse(Request.QueryString["Id"]));
+    PageData["Title"] = "AwardPage";
+}
+<div class="col-sm-5">
+    <div class="col-sm-12">
+        <div class="col-sm-8">
+            <span>Имя:</span>
+            <span>@award.Title</span>
+        </div>
+        <div class="col-sm12">
+            <form method="post">
+
+                <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                    <button onclick="window.location.href = '/Pages/AwardDeleteConfirm?Id=@award.Id';" type="button" class="btn btn-secondary">Удалить награду</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
